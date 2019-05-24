@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ADMIN_ID" />
+          </Key>
+          <Property Name="ADMIN_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ADMIN_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="ADMIN_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="CLNC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ADMIN_PASSWORD" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="APPOINTMENT">
+          <Key>
+            <PropertyRef Name="APPOIN_START_DATE" />
+            <PropertyRef Name="APPOIN_END_DATE" />
+            <PropertyRef Name="DOC_ID" />
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="APPOIN_STATE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="APPOIN_START_DATE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="APPOIN_MAX_PATIENTS" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="APPOIN_END_DATE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DOC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLNC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="APPOIN_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AREA">
+          <Key>
+            <PropertyRef Name="AREA_ID" />
+          </Key>
+          <Property Name="AREA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AREA_NAME" Type="varchar2" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOOK_TYPE">
+          <Key>
+            <PropertyRef Name="TYPE_ID" />
+          </Key>
+          <Property Name="TYPE_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="TYPE_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BOOKS">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+            <PropertyRef Name="APPOIN_START_DATE" />
+            <PropertyRef Name="DOC_ID" />
+            <PropertyRef Name="CLNC_ID" />
+            <PropertyRef Name="APPOIN_END_DATE" />
+          </Key>
+          <Property Name="BOOK_STATE" Type="char" MaxLength="1" />
+          <Property Name="PATIENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="APPOIN_START_DATE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DOC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLNC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="APPOIN_END_DATE" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="TYPE_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="CLINIC">
+          <Key>
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="CLNC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLNC_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="CLNC_ADDRESS" Type="varchar2" MaxLength="150" Nullable="false" />
+          <Property Name="CLNC_EMAIL" Type="varchar2" MaxLength="150" Nullable="false" />
+          <Property Name="AREA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLINICREVIEW">
+          <Key>
+            <PropertyRef Name="REV_DATE" />
+            <PropertyRef Name="PATIENT_ID" />
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="REV_CONTENT" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="REV_DATE" Type="date" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLNC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLNCTELS">
+          <Key>
+            <PropertyRef Name="CLNC_TEL" />
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="CLNC_TEL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="CLNC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTELS">
+          <Key>
+            <PropertyRef Name="DOC_TEL" />
+            <PropertyRef Name="DOC_ID" />
+          </Key>
+          <Property Name="DOC_TEL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DOC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="DOC_ID" />
+          </Key>
+          <Property Name="DOC_GENDER" Type="char" MaxLength="1" />
+          <Property Name="DOC_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DOC_ADDRESS" Type="varchar2" MaxLength="50" />
+          <Property Name="DOC_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="DOC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DOC_STATE" Type="char" MaxLength="1" />
+          <Property Name="SPEC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTORREVIEW">
+          <Key>
+            <PropertyRef Name="REV_DATE" />
+            <PropertyRef Name="DOC_ID" />
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="REV_CONTENT" Type="varchar2" MaxLength="150" Nullable="false" />
+          <Property Name="REV_DATE" Type="date" Nullable="false" />
+          <Property Name="DOC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="PATIENT_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PATIENT_EMAIL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PATIENT_NAME" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="PATIENT_TEL" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="PATIENT_ADDRESS" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="AREA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PATIENT_PASSWORD" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SPECIALTY">
+          <Key>
+            <PropertyRef Name="SPEC_ID" />
+          </Key>
+          <Property Name="SPEC_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SPEC_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="BOOKS_APPOINTMENT_FK1">
+          <End Role="APPOINTMENT" Type="Self.APPOINTMENT" Multiplicity="1" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPOINTMENT">
+              <PropertyRef Name="APPOIN_START_DATE" />
+              <PropertyRef Name="APPOIN_END_DATE" />
+              <PropertyRef Name="DOC_ID" />
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="BOOKS">
+              <PropertyRef Name="APPOIN_START_DATE" />
+              <PropertyRef Name="APPOIN_END_DATE" />
+              <PropertyRef Name="DOC_ID" />
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOKS_BOOK_TYPE_FK1">
+          <End Role="BOOK_TYPE" Type="Self.BOOK_TYPE" Multiplicity="0..1" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_TYPE">
+              <PropertyRef Name="TYPE_ID" />
+            </Principal>
+            <Dependent Role="BOOKS">
+              <PropertyRef Name="TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013268">
+          <End Role="SPECIALTY" Type="Self.SPECIALTY" Multiplicity="1" />
+          <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALTY">
+              <PropertyRef Name="SPEC_ID" />
+            </Principal>
+            <Dependent Role="DOCTOR">
+              <PropertyRef Name="SPEC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013277">
+          <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREA">
+              <PropertyRef Name="AREA_ID" />
+            </Principal>
+            <Dependent Role="PATIENT">
+              <PropertyRef Name="AREA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013286">
+          <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREA">
+              <PropertyRef Name="AREA_ID" />
+            </Principal>
+            <Dependent Role="CLINIC">
+              <PropertyRef Name="AREA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013292">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="CLINICREVIEW" Type="Self.CLINICREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="CLINICREVIEW">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013293">
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="1" />
+          <End Role="CLINICREVIEW" Type="Self.CLINICREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="CLINICREVIEW">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013297">
+          <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="1" />
+          <End Role="DOCTELS" Type="Self.DOCTELS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCTOR">
+              <PropertyRef Name="DOC_ID" />
+            </Principal>
+            <Dependent Role="DOCTELS">
+              <PropertyRef Name="DOC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013301">
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="1" />
+          <End Role="CLNCTELS" Type="Self.CLNCTELS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="CLNCTELS">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013307">
+          <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="1" />
+          <End Role="DOCTORREVIEW" Type="Self.DOCTORREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCTOR">
+              <PropertyRef Name="DOC_ID" />
+            </Principal>
+            <Dependent Role="DOCTORREVIEW">
+              <PropertyRef Name="DOC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013308">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="DOCTORREVIEW" Type="Self.DOCTORREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="DOCTORREVIEW">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013315">
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013328">
+          <End Role="DOCTOR" Type="Self.DOCTOR" Multiplicity="1" />
+          <End Role="APPOINTMENT" Type="Self.APPOINTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCTOR">
+              <PropertyRef Name="DOC_ID" />
+            </Principal>
+            <Dependent Role="APPOINTMENT">
+              <PropertyRef Name="DOC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013330">
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="1" />
+          <End Role="APPOINTMENT" Type="Self.APPOINTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="APPOINTMENT">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013338">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="BOOKS" Type="Self.BOOKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="BOOKS">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GET_AREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="PROJECT_V2" />
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="APPOINTMENT" EntityType="Self.APPOINTMENT" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="AREA" EntityType="Self.AREA" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="BOOK_TYPE" EntityType="Self.BOOK_TYPE" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="BOOKS" EntityType="Self.BOOKS" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="CLINIC" EntityType="Self.CLINIC" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="CLINICREVIEW" EntityType="Self.CLINICREVIEW" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="CLNCTELS" EntityType="Self.CLNCTELS" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="DOCTELS" EntityType="Self.DOCTELS" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="DOCTORREVIEW" EntityType="Self.DOCTORREVIEW" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="PATIENT" EntityType="Self.PATIENT" Schema="PROJECT_V2" store:Type="Tables" />
+          <EntitySet Name="SPECIALTY" EntityType="Self.SPECIALTY" Schema="PROJECT_V2" store:Type="Tables" />
+          <AssociationSet Name="BOOKS_APPOINTMENT_FK1" Association="Self.BOOKS_APPOINTMENT_FK1">
+            <End Role="APPOINTMENT" EntitySet="APPOINTMENT" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOKS_BOOK_TYPE_FK1" Association="Self.BOOKS_BOOK_TYPE_FK1">
+            <End Role="BOOK_TYPE" EntitySet="BOOK_TYPE" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013268" Association="Self.SYS_C0013268">
+            <End Role="SPECIALTY" EntitySet="SPECIALTY" />
+            <End Role="DOCTOR" EntitySet="DOCTOR" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013277" Association="Self.SYS_C0013277">
+            <End Role="AREA" EntitySet="AREA" />
+            <End Role="PATIENT" EntitySet="PATIENT" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013286" Association="Self.SYS_C0013286">
+            <End Role="AREA" EntitySet="AREA" />
+            <End Role="CLINIC" EntitySet="CLINIC" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013292" Association="Self.SYS_C0013292">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="CLINICREVIEW" EntitySet="CLINICREVIEW" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013293" Association="Self.SYS_C0013293">
+            <End Role="CLINIC" EntitySet="CLINIC" />
+            <End Role="CLINICREVIEW" EntitySet="CLINICREVIEW" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013297" Association="Self.SYS_C0013297">
+            <End Role="DOCTOR" EntitySet="DOCTOR" />
+            <End Role="DOCTELS" EntitySet="DOCTELS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013301" Association="Self.SYS_C0013301">
+            <End Role="CLINIC" EntitySet="CLINIC" />
+            <End Role="CLNCTELS" EntitySet="CLNCTELS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013307" Association="Self.SYS_C0013307">
+            <End Role="DOCTOR" EntitySet="DOCTOR" />
+            <End Role="DOCTORREVIEW" EntitySet="DOCTORREVIEW" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013308" Association="Self.SYS_C0013308">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="DOCTORREVIEW" EntitySet="DOCTORREVIEW" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013315" Association="Self.SYS_C0013315">
+            <End Role="CLINIC" EntitySet="CLINIC" />
+            <End Role="ADMIN" EntitySet="ADMIN" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013328" Association="Self.SYS_C0013328">
+            <End Role="DOCTOR" EntitySet="DOCTOR" />
+            <End Role="APPOINTMENT" EntitySet="APPOINTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013330" Association="Self.SYS_C0013330">
+            <End Role="CLINIC" EntitySet="CLINIC" />
+            <End Role="APPOINTMENT" EntitySet="APPOINTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013338" Association="Self.SYS_C0013338">
+            <End Role="PATIENT" EntitySet="PATIENT" />
+            <End Role="BOOKS" EntitySet="BOOKS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ADMIN_ID" />
+          </Key>
+          <Property Name="ADMIN_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ADMIN_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADMIN_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLNC_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CLINIC" Relationship="Self.SYS_C0013315" FromRole="ADMIN" ToRole="CLINIC" />
+          <Property Name="ADMIN_PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AREA">
+          <Key>
+            <PropertyRef Name="AREA_ID" />
+          </Key>
+          <Property Name="AREA_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AREA_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PATIENTs" Relationship="Self.SYS_C0013277" FromRole="AREA" ToRole="PATIENT" />
+          <NavigationProperty Name="CLINICs" Relationship="Self.SYS_C0013286" FromRole="AREA" ToRole="CLINIC" />
+        </EntityType>
+        <EntityType Name="CLINIC">
+          <Key>
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="CLNC_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLNC_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLNC_ADDRESS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLNC_EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AREA_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="ADMINs" Relationship="Self.SYS_C0013315" FromRole="CLINIC" ToRole="ADMIN" />
+          <NavigationProperty Name="AREA" Relationship="Self.SYS_C0013286" FromRole="CLINIC" ToRole="AREA" />
+          <NavigationProperty Name="CLINICREVIEWs" Relationship="Self.SYS_C0013293" FromRole="CLINIC" ToRole="CLINICREVIEW" />
+          <NavigationProperty Name="CLNCTELS" Relationship="Self.SYS_C0013301" FromRole="CLINIC" ToRole="CLNCTELS" />
+          <NavigationProperty Name="APPOINTMENTs" Relationship="Model.SYS_C0013330" FromRole="CLINIC" ToRole="APPOINTMENT" />
+        </EntityType>
+        <EntityType Name="CLINICREVIEW">
+          <Key>
+            <PropertyRef Name="REV_DATE" />
+            <PropertyRef Name="PATIENT_ID" />
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="REV_CONTENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REV_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CLNC_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CLINIC" Relationship="Self.SYS_C0013293" FromRole="CLINICREVIEW" ToRole="CLINIC" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.SYS_C0013292" FromRole="CLINICREVIEW" ToRole="PATIENT" />
+        </EntityType>
+        <EntityType Name="CLNCTEL">
+          <Key>
+            <PropertyRef Name="CLNC_TEL" />
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="CLNC_TEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLNC_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CLINIC" Relationship="Self.SYS_C0013301" FromRole="CLNCTELS" ToRole="CLINIC" />
+        </EntityType>
+        <EntityType Name="DOCTEL">
+          <Key>
+            <PropertyRef Name="DOC_TEL" />
+            <PropertyRef Name="DOC_ID" />
+          </Key>
+          <Property Name="DOC_TEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOC_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DOCTOR" Relationship="Model.SYS_C0013297" FromRole="DOCTEL" ToRole="DOCTOR" />
+        </EntityType>
+        <EntityType Name="DOCTORREVIEW">
+          <Key>
+            <PropertyRef Name="REV_DATE" />
+            <PropertyRef Name="DOC_ID" />
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="REV_CONTENT" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REV_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DOC_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PATIENT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PATIENT" Relationship="Self.SYS_C0013308" FromRole="DOCTORREVIEW" ToRole="PATIENT" />
+          <NavigationProperty Name="DOCTOR" Relationship="Model.SYS_C0013307" FromRole="DOCTORREVIEW" ToRole="DOCTOR" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="PATIENT_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PATIENT_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_TEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PATIENT_ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AREA_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="AREA" Relationship="Self.SYS_C0013277" FromRole="PATIENT" ToRole="AREA" />
+          <NavigationProperty Name="CLINICREVIEWs" Relationship="Self.SYS_C0013292" FromRole="PATIENT" ToRole="CLINICREVIEW" />
+          <NavigationProperty Name="DOCTORREVIEWs" Relationship="Self.SYS_C0013308" FromRole="PATIENT" ToRole="DOCTORREVIEW" />
+          <Property Name="PATIENT_PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BOOKS" Relationship="Model.SYS_C0013338" FromRole="PATIENT" ToRole="BOOK" />
+        </EntityType>
+        <EntityType Name="SPECIALTY">
+          <Key>
+            <PropertyRef Name="SPEC_ID" />
+          </Key>
+          <Property Name="SPEC_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SPEC_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DOCTORs" Relationship="Model.SYS_C0013268" FromRole="SPECIALTY" ToRole="DOCTOR" />
+        </EntityType>
+        <Association Name="SYS_C0013315">
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="1" />
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="ADMIN">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013277">
+          <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREA">
+              <PropertyRef Name="AREA_ID" />
+            </Principal>
+            <Dependent Role="PATIENT">
+              <PropertyRef Name="AREA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013286">
+          <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREA">
+              <PropertyRef Name="AREA_ID" />
+            </Principal>
+            <Dependent Role="CLINIC">
+              <PropertyRef Name="AREA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013293">
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="1" />
+          <End Role="CLINICREVIEW" Type="Self.CLINICREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="CLINICREVIEW">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013301">
+          <End Role="CLINIC" Type="Self.CLINIC" Multiplicity="1" />
+          <End Role="CLNCTELS" Type="Self.CLNCTEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="CLNCTELS">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013292">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="CLINICREVIEW" Type="Self.CLINICREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="CLINICREVIEW">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013308">
+          <End Role="PATIENT" Type="Self.PATIENT" Multiplicity="1" />
+          <End Role="DOCTORREVIEW" Type="Self.DOCTORREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="DOCTORREVIEW">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+          <EntitySet Name="AREAs" EntityType="Self.AREA" />
+          <EntitySet Name="CLINICs" EntityType="Self.CLINIC" />
+          <EntitySet Name="CLINICREVIEWs" EntityType="Self.CLINICREVIEW" />
+          <EntitySet Name="CLNCTELS" EntityType="Self.CLNCTEL" />
+          <EntitySet Name="DOCTELS" EntityType="Self.DOCTEL" />
+          <EntitySet Name="DOCTORREVIEWs" EntityType="Self.DOCTORREVIEW" />
+          <EntitySet Name="PATIENTs" EntityType="Self.PATIENT" />
+          <EntitySet Name="SPECIALTies" EntityType="Self.SPECIALTY" />
+          <AssociationSet Name="SYS_C0013315" Association="Self.SYS_C0013315">
+            <End Role="CLINIC" EntitySet="CLINICs" />
+            <End Role="ADMIN" EntitySet="ADMINs" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013277" Association="Self.SYS_C0013277">
+            <End Role="AREA" EntitySet="AREAs" />
+            <End Role="PATIENT" EntitySet="PATIENTs" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013286" Association="Self.SYS_C0013286">
+            <End Role="AREA" EntitySet="AREAs" />
+            <End Role="CLINIC" EntitySet="CLINICs" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013293" Association="Self.SYS_C0013293">
+            <End Role="CLINIC" EntitySet="CLINICs" />
+            <End Role="CLINICREVIEW" EntitySet="CLINICREVIEWs" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013301" Association="Self.SYS_C0013301">
+            <End Role="CLINIC" EntitySet="CLINICs" />
+            <End Role="CLNCTELS" EntitySet="CLNCTELS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013292" Association="Self.SYS_C0013292">
+            <End Role="PATIENT" EntitySet="PATIENTs" />
+            <End Role="CLINICREVIEW" EntitySet="CLINICREVIEWs" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013308" Association="Self.SYS_C0013308">
+            <End Role="PATIENT" EntitySet="PATIENTs" />
+            <End Role="DOCTORREVIEW" EntitySet="DOCTORREVIEWs" />
+          </AssociationSet>
+          <FunctionImport Name="GET_AREA" />
+          <EntitySet Name="DOCTORs" EntityType="Model.DOCTOR" />
+          <AssociationSet Name="SYS_C0013297" Association="Model.SYS_C0013297">
+            <End Role="DOCTOR" EntitySet="DOCTORs" />
+            <End Role="DOCTEL" EntitySet="DOCTELS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013268" Association="Model.SYS_C0013268">
+            <End Role="SPECIALTY" EntitySet="SPECIALTies" />
+            <End Role="DOCTOR" EntitySet="DOCTORs" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013307" Association="Model.SYS_C0013307">
+            <End Role="DOCTOR" EntitySet="DOCTORs" />
+            <End Role="DOCTORREVIEW" EntitySet="DOCTORREVIEWs" />
+          </AssociationSet>
+          <EntitySet Name="BOOK_TYPE" EntityType="Model.BOOK_TYPE" />
+          <EntitySet Name="APPOINTMENTs" EntityType="Model.APPOINTMENT" />
+          <AssociationSet Name="SYS_C0013328" Association="Model.SYS_C0013328">
+            <End Role="DOCTOR" EntitySet="DOCTORs" />
+            <End Role="APPOINTMENT" EntitySet="APPOINTMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013330" Association="Model.SYS_C0013330">
+            <End Role="CLINIC" EntitySet="CLINICs" />
+            <End Role="APPOINTMENT" EntitySet="APPOINTMENTs" />
+          </AssociationSet>
+          <EntitySet Name="BOOKS" EntityType="Model.BOOK" />
+          <AssociationSet Name="BOOKS_APPOINTMENT_FK1" Association="Model.BOOKS_APPOINTMENT_FK1">
+            <End Role="APPOINTMENT" EntitySet="APPOINTMENTs" />
+            <End Role="BOOK" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="BOOKS_BOOK_TYPE_FK1" Association="Model.BOOKS_BOOK_TYPE_FK1">
+            <End Role="BOOK_TYPE" EntitySet="BOOK_TYPE" />
+            <End Role="BOOK" EntitySet="BOOKS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0013338" Association="Model.SYS_C0013338">
+            <End Role="PATIENT" EntitySet="PATIENTs" />
+            <End Role="BOOK" EntitySet="BOOKS" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="DOC_ID" />
+          </Key>
+          <Property Name="DOC_GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DOC_EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="DOC_STATE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SPEC_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DOCTELS" Relationship="Model.SYS_C0013297" FromRole="DOCTOR" ToRole="DOCTEL" />
+          <NavigationProperty Name="SPECIALTY" Relationship="Model.SYS_C0013268" FromRole="DOCTOR" ToRole="SPECIALTY" />
+          <NavigationProperty Name="DOCTORREVIEWs" Relationship="Model.SYS_C0013307" FromRole="DOCTOR" ToRole="DOCTORREVIEW" />
+          <NavigationProperty Name="APPOINTMENTs" Relationship="Model.SYS_C0013328" FromRole="DOCTOR" ToRole="APPOINTMENT" />
+        </EntityType>
+        <Association Name="SYS_C0013297">
+          <End Type="Model.DOCTOR" Role="DOCTOR" Multiplicity="1" />
+          <End Type="Model.DOCTEL" Role="DOCTEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCTOR">
+              <PropertyRef Name="DOC_ID" />
+            </Principal>
+            <Dependent Role="DOCTEL">
+              <PropertyRef Name="DOC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013268">
+          <End Type="Model.SPECIALTY" Role="SPECIALTY" Multiplicity="1" />
+          <End Type="Model.DOCTOR" Role="DOCTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALTY">
+              <PropertyRef Name="SPEC_ID" />
+            </Principal>
+            <Dependent Role="DOCTOR">
+              <PropertyRef Name="SPEC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013307">
+          <End Type="Model.DOCTOR" Role="DOCTOR" Multiplicity="1" />
+          <End Type="Model.DOCTORREVIEW" Role="DOCTORREVIEW" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCTOR">
+              <PropertyRef Name="DOC_ID" />
+            </Principal>
+            <Dependent Role="DOCTORREVIEW">
+              <PropertyRef Name="DOC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BOOK_TYPE">
+          <Key>
+            <PropertyRef Name="TYPE_ID" />
+          </Key>
+          <Property Name="TYPE_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="BOOKS" Relationship="Model.BOOKS_BOOK_TYPE_FK1" FromRole="BOOK_TYPE" ToRole="BOOK" />
+        </EntityType>
+        <EntityType Name="APPOINTMENT">
+          <Key>
+            <PropertyRef Name="APPOIN_START_DATE" />
+            <PropertyRef Name="APPOIN_END_DATE" />
+            <PropertyRef Name="DOC_ID" />
+            <PropertyRef Name="CLNC_ID" />
+          </Key>
+          <Property Name="APPOIN_STATE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="APPOIN_START_DATE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APPOIN_MAX_PATIENTS" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="APPOIN_END_DATE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="CLNC_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="APPOIN_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="DOCTOR" Relationship="Model.SYS_C0013328" FromRole="APPOINTMENT" ToRole="DOCTOR" />
+          <NavigationProperty Name="CLINIC" Relationship="Model.SYS_C0013330" FromRole="APPOINTMENT" ToRole="CLINIC" />
+          <NavigationProperty Name="BOOKS" Relationship="Model.BOOKS_APPOINTMENT_FK1" FromRole="APPOINTMENT" ToRole="BOOK" />
+        </EntityType>
+        <Association Name="SYS_C0013328">
+          <End Type="Model.DOCTOR" Role="DOCTOR" Multiplicity="1" />
+          <End Type="Model.APPOINTMENT" Role="APPOINTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCTOR">
+              <PropertyRef Name="DOC_ID" />
+            </Principal>
+            <Dependent Role="APPOINTMENT">
+              <PropertyRef Name="DOC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013330">
+          <End Type="Model.CLINIC" Role="CLINIC" Multiplicity="1" />
+          <End Type="Model.APPOINTMENT" Role="APPOINTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLINIC">
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="APPOINTMENT">
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BOOK">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+            <PropertyRef Name="APPOIN_START_DATE" />
+            <PropertyRef Name="DOC_ID" />
+            <PropertyRef Name="CLNC_ID" />
+            <PropertyRef Name="APPOIN_END_DATE" />
+          </Key>
+          <Property Name="BOOK_STATE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PATIENT_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="APPOIN_START_DATE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="CLNC_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="APPOIN_END_DATE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="APPOINTMENT" Relationship="Model.BOOKS_APPOINTMENT_FK1" FromRole="BOOK" ToRole="APPOINTMENT" />
+          <NavigationProperty Name="BOOK_TYPE" Relationship="Model.BOOKS_BOOK_TYPE_FK1" FromRole="BOOK" ToRole="BOOK_TYPE" />
+          <NavigationProperty Name="PATIENT" Relationship="Model.SYS_C0013338" FromRole="BOOK" ToRole="PATIENT" />
+        </EntityType>
+        <Association Name="BOOKS_APPOINTMENT_FK1">
+          <End Type="Model.APPOINTMENT" Role="APPOINTMENT" Multiplicity="1" />
+          <End Type="Model.BOOK" Role="BOOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPOINTMENT">
+              <PropertyRef Name="APPOIN_START_DATE" />
+              <PropertyRef Name="APPOIN_END_DATE" />
+              <PropertyRef Name="DOC_ID" />
+              <PropertyRef Name="CLNC_ID" />
+            </Principal>
+            <Dependent Role="BOOK">
+              <PropertyRef Name="APPOIN_START_DATE" />
+              <PropertyRef Name="APPOIN_END_DATE" />
+              <PropertyRef Name="DOC_ID" />
+              <PropertyRef Name="CLNC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BOOKS_BOOK_TYPE_FK1">
+          <End Type="Model.BOOK_TYPE" Role="BOOK_TYPE" Multiplicity="0..1" />
+          <End Type="Model.BOOK" Role="BOOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOOK_TYPE">
+              <PropertyRef Name="TYPE_ID" />
+            </Principal>
+            <Dependent Role="BOOK">
+              <PropertyRef Name="TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0013338">
+          <End Type="Model.PATIENT" Role="PATIENT" Multiplicity="1" />
+          <End Type="Model.BOOK" Role="BOOK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PATIENT">
+              <PropertyRef Name="PATIENT_ID" />
+            </Principal>
+            <Dependent Role="BOOK">
+              <PropertyRef Name="PATIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="Model.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="ADMIN_PASSWORD" ColumnName="ADMIN_PASSWORD" />
+                <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
+                <ScalarProperty Name="ADMIN_EMAIL" ColumnName="ADMIN_EMAIL" />
+                <ScalarProperty Name="ADMIN_NAME" ColumnName="ADMIN_NAME" />
+                <ScalarProperty Name="CLNC_ID" ColumnName="CLNC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AREAs">
+            <EntityTypeMapping TypeName="Model.AREA">
+              <MappingFragment StoreEntitySet="AREA">
+                <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
+                <ScalarProperty Name="AREA_NAME" ColumnName="AREA_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLINICs">
+            <EntityTypeMapping TypeName="Model.CLINIC">
+              <MappingFragment StoreEntitySet="CLINIC">
+                <ScalarProperty Name="CLNC_ID" ColumnName="CLNC_ID" />
+                <ScalarProperty Name="CLNC_NAME" ColumnName="CLNC_NAME" />
+                <ScalarProperty Name="CLNC_ADDRESS" ColumnName="CLNC_ADDRESS" />
+                <ScalarProperty Name="CLNC_EMAIL" ColumnName="CLNC_EMAIL" />
+                <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLINICREVIEWs">
+            <EntityTypeMapping TypeName="Model.CLINICREVIEW">
+              <MappingFragment StoreEntitySet="CLINICREVIEW">
+                <ScalarProperty Name="REV_CONTENT" ColumnName="REV_CONTENT" />
+                <ScalarProperty Name="REV_DATE" ColumnName="REV_DATE" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="CLNC_ID" ColumnName="CLNC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLNCTELS">
+            <EntityTypeMapping TypeName="Model.CLNCTEL">
+              <MappingFragment StoreEntitySet="CLNCTELS">
+                <ScalarProperty Name="CLNC_TEL" ColumnName="CLNC_TEL" />
+                <ScalarProperty Name="CLNC_ID" ColumnName="CLNC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCTELS">
+            <EntityTypeMapping TypeName="Model.DOCTEL">
+              <MappingFragment StoreEntitySet="DOCTELS">
+                <ScalarProperty Name="DOC_TEL" ColumnName="DOC_TEL" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCTORREVIEWs">
+            <EntityTypeMapping TypeName="Model.DOCTORREVIEW">
+              <MappingFragment StoreEntitySet="DOCTORREVIEW">
+                <ScalarProperty Name="REV_CONTENT" ColumnName="REV_CONTENT" />
+                <ScalarProperty Name="REV_DATE" ColumnName="REV_DATE" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PATIENTs">
+            <EntityTypeMapping TypeName="Model.PATIENT">
+              <MappingFragment StoreEntitySet="PATIENT">
+                <ScalarProperty Name="PATIENT_PASSWORD" ColumnName="PATIENT_PASSWORD" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="PATIENT_EMAIL" ColumnName="PATIENT_EMAIL" />
+                <ScalarProperty Name="PATIENT_NAME" ColumnName="PATIENT_NAME" />
+                <ScalarProperty Name="PATIENT_TEL" ColumnName="PATIENT_TEL" />
+                <ScalarProperty Name="PATIENT_ADDRESS" ColumnName="PATIENT_ADDRESS" />
+                <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPECIALTies">
+            <EntityTypeMapping TypeName="Model.SPECIALTY">
+              <MappingFragment StoreEntitySet="SPECIALTY">
+                <ScalarProperty Name="SPEC_NAME" ColumnName="SPEC_NAME" />
+                <ScalarProperty Name="SPEC_ID" ColumnName="SPEC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GET_AREA" FunctionName="Model.Store.GET_AREA" />
+          <EntitySetMapping Name="DOCTORs">
+            <EntityTypeMapping TypeName="Model.DOCTOR">
+              <MappingFragment StoreEntitySet="DOCTOR">
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="SPEC_ID" ColumnName="SPEC_ID" />
+                <ScalarProperty Name="DOC_STATE" ColumnName="DOC_STATE" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="DOC_NAME" ColumnName="DOC_NAME" />
+                <ScalarProperty Name="DOC_ADDRESS" ColumnName="DOC_ADDRESS" />
+                <ScalarProperty Name="DOC_EMAIL" ColumnName="DOC_EMAIL" />
+                <ScalarProperty Name="DOC_GENDER" ColumnName="DOC_GENDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOOK_TYPE">
+            <EntityTypeMapping TypeName="Model.BOOK_TYPE">
+              <MappingFragment StoreEntitySet="BOOK_TYPE">
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="TYPE_NAME" ColumnName="TYPE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APPOINTMENTs">
+            <EntityTypeMapping TypeName="Model.APPOINTMENT">
+              <MappingFragment StoreEntitySet="APPOINTMENT">
+                <ScalarProperty Name="APPOIN_ID" ColumnName="APPOIN_ID" />
+                <ScalarProperty Name="CLNC_ID" ColumnName="CLNC_ID" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="APPOIN_END_DATE" ColumnName="APPOIN_END_DATE" />
+                <ScalarProperty Name="APPOIN_MAX_PATIENTS" ColumnName="APPOIN_MAX_PATIENTS" />
+                <ScalarProperty Name="APPOIN_START_DATE" ColumnName="APPOIN_START_DATE" />
+                <ScalarProperty Name="APPOIN_STATE" ColumnName="APPOIN_STATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BOOKS">
+            <EntityTypeMapping TypeName="Model.BOOK">
+              <MappingFragment StoreEntitySet="BOOKS">
+                <ScalarProperty Name="TYPE_ID" ColumnName="TYPE_ID" />
+                <ScalarProperty Name="APPOIN_END_DATE" ColumnName="APPOIN_END_DATE" />
+                <ScalarProperty Name="CLNC_ID" ColumnName="CLNC_ID" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="APPOIN_START_DATE" ColumnName="APPOIN_START_DATE" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+                <ScalarProperty Name="BOOK_STATE" ColumnName="BOOK_STATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
